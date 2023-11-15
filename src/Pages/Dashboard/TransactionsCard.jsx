@@ -70,41 +70,45 @@ const TransactionRow = ({
         }`}
       >
         <table className="w-full h-full">
-          <tr className="w-full h-full">
-            <td className="w-[21%]">
-              <Tag text={statusText} type={status} isBullet={isBullet} />
-            </td>
+          <tbody>
+            <tr className="w-full h-full">
+              <td className="w-[21%]">
+                <Tag text={statusText} type={status} isBullet={isBullet} />
+              </td>
 
-            <td className="w-[31%]">
-              <div className="flex flex-col gap-y-1">
-                <p className="text-primary font-semibold text-[13px]">
-                  {bankText}
-                </p>
+              <td className="w-[31%]">
+                <div className="flex flex-col gap-y-1">
+                  <p className="text-primary font-semibold text-[13px]">
+                    {bankText}
+                  </p>
+                  <p className="text-secondary font-semibold text-[13px]">
+                    {bankPayType}
+                  </p>
+                </div>
+              </td>
+
+              <td className="w-[22%]">
+                <div className="flex flex-col gap-y-1">
+                  <p className="text-primary font-semibold text-[13px]">
+                    {amount}
+                  </p>
+                  <p className="text-secondary font-semibold text-[13px]">
+                    {date}
+                  </p>
+                </div>
+              </td>
+
+              <td className="w-[21%]">
                 <p className="text-secondary font-semibold text-[13px]">
-                  {bankPayType}
+                  Ticket
                 </p>
-              </div>
-            </td>
+              </td>
 
-            <td className="w-[22%]">
-              <div className="flex flex-col gap-y-1">
-                <p className="text-primary font-semibold text-[13px]">
-                  {amount}
-                </p>
-                <p className="text-secondary font-semibold text-[13px]">
-                  {date}
-                </p>
-              </div>
-            </td>
-
-            <td className="w-[21%]">
-              <p className="text-secondary font-semibold text-[13px]">Ticket</p>
-            </td>
-
-            <td className="w-[5%]">
-              <img src={dot} alt="dot-icon.svg" />
-            </td>
-          </tr>
+              <td className="w-[5%]">
+                <img src={dot} alt="dot-icon.svg" />
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </>

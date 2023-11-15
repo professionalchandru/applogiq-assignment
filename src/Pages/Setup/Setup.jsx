@@ -18,17 +18,34 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 import { getTableList } from "../../Redux/Actions/AppActions";
 import { connect } from "react-redux";
 import Pagination from "./Pagination";
+import { useSearchParams } from "react-router-dom";
 
 export const PageSize = 10;
 
 const Setup = ({ getList, tableArrayList }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  let paramsObj = Object.fromEntries([...searchParams]);
+
   const [tableList, setTableList] = useState(tableArrayList);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentTab, setCurrentTab] = useState(1);
+  const [currentPage, setCurrentPage] = useState(Number(paramsObj.page) || 1);
+  const [currentTab, setCurrentTab] = useState(Number(paramsObj.tab) || 1);
 
   useEffect(() => {
+    if (paramsObj.page && paramsObj.tab) {
+      setCurrentTab(Number(paramsObj.tab));
+      setCurrentPage(Number(paramsObj.page));
+    } else {
+      setSearchParams({
+        tab: 1,
+        page: 1,
+      });
+    }
+  }, [paramsObj, setSearchParams]);
+
+  useEffect(() => {
+    console.log("te");
     getList(currentTab);
-    setCurrentPage(1);
+    // setCurrentPage(1);
   }, [currentTab, getList]);
 
   useEffect(() => {
@@ -43,12 +60,26 @@ const Setup = ({ getList, tableArrayList }) => {
 
   const handleTabClick = (tab) => {
     setCurrentTab(tab);
+    setSearchParams({
+      tab: tab,
+      page: 1,
+    });
+    setCurrentPage(1);
   };
 
   const chooseUserImg = () => {
     const list = [userIcon, user2Icon, user3Icon, user4Icon];
     const result = list[Math.floor(Math.random() * list.length)];
     return result;
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    setSearchParams({
+      tab: currentTab,
+      page: page,
+    });
+    setCurrentPage(page);
   };
 
   return (
@@ -230,7 +261,7 @@ const Setup = ({ getList, tableArrayList }) => {
             currentPage={currentPage}
             totalCount={tableList?.length}
             pageSize={PageSize}
-            onPageChange={(page) => setCurrentPage(page)}
+            onPageChange={(page) => handlePageChange(page)}
           />
         </div>
       </div>

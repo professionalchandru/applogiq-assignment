@@ -37,8 +37,8 @@ const Pagination = ({
       <div className="px-6 pt-3 pb-4 flex flex-row items-center justify-between bg-white rounded-b-lg  table-footer-shadow ">
         <button
           onClick={onPrevious}
-          className={`px-4 py-2.5 flex items-center gap-x-2 border border-borderPrimary rounded-lg cursor-pointer text-primary text-sm bg-white add-new-button-shadow ${
-            currentPage === 1 && "cursor-not-allowed"
+          className={`px-4 py-2.5 flex items-center gap-x-2 border border-borderPrimary rounded-lg text-primary text-sm bg-white add-new-button-shadow ${
+            currentPage === 1 ? "cursor-not-allowed" : "cursor-pointer"
           }`}
           disabled={currentPage === 1}
         >
@@ -76,8 +76,8 @@ const Pagination = ({
 
         <button
           onClick={onNext}
-          className={`px-4 py-2.5 flex items-center gap-x-2 border border-borderPrimary rounded-lg cursor-pointer text-primary text-sm bg-white add-new-button-shadow ${
-            currentPage === lastPage && "cursor-not-allowed"
+          className={`px-4 py-2.5 flex items-center gap-x-2 border border-borderPrimary rounded-lg text-primary text-sm bg-white add-new-button-shadow ${
+            currentPage === lastPage ? "cursor-not-allowed" : "cursor-pointer"
           }`}
           disabled={currentPage === lastPage}
         >
